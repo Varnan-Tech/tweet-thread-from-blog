@@ -1,5 +1,8 @@
 # tweet-thread-from-blog
 
+<img width="1280" height="640" alt="tweet-thread-from-blog" src="https://github.com/user-attachments/assets/18b96a6b-9477-444d-b169-ea14a63e9fdf" />
+
+
 Turn any blog post or article into a Twitter/X thread. The agent reads the content, picks the right thread style, and writes 7-10 tweets with a strong hook, one insight per tweet, and a CTA. Optionally posts the full thread to X via Composio using a reply chain.
 
 ## Thread Styles
@@ -17,7 +20,7 @@ The agent auto-detects the right style. Override it by specifying the style in y
 
 No LLM API key needed. The agent reads the page and writes the thread.
 
-Composio is optional. Without it, the agent outputs the thread as text for copy-paste. With it, the agent posts the thread directly to X using a reply chain.
+**Note on X/Twitter posting:** Twitter's API v2 now requires a paid developer account (Basic tier, $100/month minimum). As a result, the Composio Twitter integration returns a 403 error for most users. The skill still generates complete, ready-to-post threads — just copy-paste them manually. Direct posting via Composio is documented below but is only viable if you have a paid Twitter developer account connected.
 
 ## Setup
 
@@ -28,11 +31,14 @@ cp .env.example .env
 # Add COMPOSIO_API_KEY if you want direct posting to X
 ```
 
-### 2. Connect X/Twitter via Composio (optional)
+### 2. Connect X/Twitter via Composio (optional, requires paid Twitter developer account)
 
-1. Get your API key at: https://app.composio.dev/settings
-2. Connect your X/Twitter account at: https://app.composio.dev/app/twitter
-3. Complete the OAuth flow
+Twitter's API v2 now requires a paid developer account before Composio can post on your behalf. If you get a 403 error, this is why. Skip this step and use copy-paste output instead.
+
+1. Sign up for Twitter Developer Portal (Basic tier, ~$100/month): https://developer.twitter.com/en/portal/products
+2. Get your Composio API key at: https://app.composio.dev/settings
+3. Connect your X/Twitter account at: https://app.composio.dev/app/twitter
+4. Complete the OAuth flow
 
 ## How to Use
 
@@ -58,7 +64,7 @@ With a style override:
 "Write a Hot Take thread from this: https://example.com/opinion"
 ```
 
-With direct posting:
+With direct posting (requires paid Twitter developer account + Composio setup):
 
 ```
 "Post this blog post as a Twitter thread: https://example.com/post"
